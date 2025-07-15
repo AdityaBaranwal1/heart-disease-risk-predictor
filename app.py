@@ -135,7 +135,7 @@ if page == "🏠 Risk Assessment":
             # Prepare data
             patient_data = {
                 'age': age, 'sex': sex, 'cp': cp, 'trestbps': trestbps, 'chol': chol,
-                'fbs': fbs, 'restecg': restecg, 'thalch': thalch, 'exang': exang,
+                'fbs': fbs, 'restecg': restecg, 'thalach': thalch, 'exang': exang,
                 'oldpeak': oldpeak, 'slope': slope, 'ca': ca, 'thal': thal
             }
 
