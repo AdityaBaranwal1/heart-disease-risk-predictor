@@ -20,7 +20,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header text-center">
-                        <h2>🏥 Heart Disease Risk Predictor</h2>
+                        <h2> Heart Disease Risk Predictor</h2>
                         <p class="mb-0">Enter patient information for risk assessment</p>
                     </div>
                     <div class="card-body">
@@ -31,7 +31,7 @@
                                 {% endfor %}
                             {% endif %}
                         {% endwith %}
-                        
+
                         <form method="POST" action="/predict">
                             <div class="row">
                                 <div class="col-md-6">
@@ -39,7 +39,7 @@
                                         <label for="age" class="form-label">Age (years)</label>
                                         <input type="number" class="form-control" id="age" name="age" min="1" max="120" required>
                                     </div>
-                                    
+
                                     <div class="mb-3">
                                         <label for="sex" class="form-label">Gender</label>
                                         <select class="form-control" id="sex" name="sex" required>
@@ -48,7 +48,7 @@
                                             <option value="1">Male</option>
                                         </select>
                                     </div>
-                                    
+
                                     <div class="mb-3">
                                         <label for="cp" class="form-label">Chest Pain Type</label>
                                         <select class="form-control" id="cp" name="cp" required>
@@ -59,17 +59,17 @@
                                             <option value="3">Asymptomatic</option>
                                         </select>
                                     </div>
-                                    
+
                                     <div class="mb-3">
                                         <label for="trestbps" class="form-label">Resting Blood Pressure</label>
                                         <input type="number" class="form-control" id="trestbps" name="trestbps" min="50" max="300" required>
                                     </div>
-                                    
+
                                     <div class="mb-3">
                                         <label for="chol" class="form-label">Cholesterol (mg/dl)</label>
                                         <input type="number" class="form-control" id="chol" name="chol" min="0" max="600" required>
                                     </div>
-                                    
+
                                     <div class="mb-3">
                                         <label for="fbs" class="form-label">Fasting Blood Sugar > 120 mg/dl</label>
                                         <select class="form-control" id="fbs" name="fbs" required>
@@ -79,7 +79,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="restecg" class="form-label">Resting ECG Results</label>
@@ -90,12 +90,12 @@
                                             <option value="2">Left ventricular hypertrophy</option>
                                         </select>
                                     </div>
-                                    
+
                                     <div class="mb-3">
                                         <label for="thalch" class="form-label">Maximum Heart Rate Achieved</label>
                                         <input type="number" class="form-control" id="thalch" name="thalch" min="50" max="250" required>
                                     </div>
-                                    
+
                                     <div class="mb-3">
                                         <label for="exang" class="form-label">Exercise Induced Angina</label>
                                         <select class="form-control" id="exang" name="exang" required>
@@ -104,12 +104,12 @@
                                             <option value="1">Yes</option>
                                         </select>
                                     </div>
-                                    
+
                                     <div class="mb-3">
                                         <label for="oldpeak" class="form-label">ST Depression (oldpeak)</label>
                                         <input type="number" step="0.1" class="form-control" id="oldpeak" name="oldpeak" min="0" max="10" required>
                                     </div>
-                                    
+
                                     <div class="mb-3">
                                         <label for="slope" class="form-label">Slope of Peak Exercise ST Segment</label>
                                         <select class="form-control" id="slope" name="slope" required>
@@ -119,7 +119,7 @@
                                             <option value="2">Downsloping</option>
                                         </select>
                                     </div>
-                                    
+
                                     <div class="mb-3">
                                         <label for="ca" class="form-label">Number of Major Vessels (0-4)</label>
                                         <select class="form-control" id="ca" name="ca" required>
@@ -131,7 +131,7 @@
                                             <option value="4">4</option>
                                         </select>
                                     </div>
-                                    
+
                                     <div class="mb-3">
                                         <label for="thal" class="form-label">Thalassemia</label>
                                         <select class="form-control" id="thal" name="thal" required>
@@ -144,10 +144,10 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary btn-lg">
-                                    🔍 Predict Heart Disease Risk
+                                     Predict Heart Disease Risk
                                 </button>
                             </div>
                         </form>
@@ -156,7 +156,7 @@
             </div>
         </div>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

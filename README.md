@@ -1,9 +1,9 @@
 # Heart Disease Risk Predictor
 ## Data Management for Data Science - Complete Implementation
 
-A comprehensive data science project that demonstrates advanced data management techniques, SQL-based analysis, ETL pipelines, and machine learning for heart disease prediction.
+A complete data science project that demonstrates advanced data management techniques, SQL-based analysis, ETL pipelines, and machine learning for heart disease prediction.
 
-## 🎯 Project Overview
+##  Project Overview
 
 This project implements a complete data management and analysis pipeline for heart disease prediction, specifically designed for **DATA MGMT FOR DATASC 01:198:210:G1** course requirements.
 
@@ -12,14 +12,14 @@ This project implements a complete data management and analysis pipeline for hea
 - **SQL Analysis**: 10+ complex queries for exploratory data analysis
 - **ETL Pipeline**: Complete extract-transform-load implementation
 - **Machine Learning**: Multiple algorithms with hyperparameter tuning
-- **Data Visualization**: Comprehensive statistical charts and EDA
+- **Data Visualization**: Complete statistical charts and EDA
 - **Academic Documentation**: Complete project structure and analysis
 
-## 📊 Dataset
+##  Dataset
 
-**Source**: Heart Disease UCI Dataset  
-**Records**: 303 patients  
-**Features**: 14 clinical attributes  
+**Source**: Heart Disease UCI Dataset
+**Records**: 303 patients
+**Features**: 14 clinical attributes
 **Target**: Heart disease presence (binary classification)
 
 ### Features Description
@@ -38,7 +38,7 @@ This project implements a complete data management and analysis pipeline for hea
 - `thal`: Thalassemia type
 - `num`: Heart disease diagnosis (0-4, >0 indicates disease)
 
-## 🏗️ System Architecture
+## 🏗 System Architecture
 
 ### 1. Database Layer (`database_setup.py`)
 ```
@@ -46,7 +46,7 @@ This project implements a complete data management and analysis pipeline for hea
 ├── Data integrity constraints
 ├── Performance indexes
 ├── Automated data validation
-└── Comprehensive table management
+└── Complete table management
 ```
 
 **Key Components:**
@@ -82,12 +82,12 @@ This project implements a complete data management and analysis pipeline for hea
 ├── Transform: Data cleaning & validation
 ├── Load: Database population
 ├── Analysis: SQL-based exploration
-└── Reporting: Comprehensive logs
+└── Reporting: Complete logs
 ```
 
 **Pipeline Features:**
 - **Automated Processing**: Complete data flow automation
-- **Error Handling**: Comprehensive exception management
+- **Error Handling**: Complete exception management
 - **Logging System**: Detailed operation tracking
 - **Data Validation**: Multi-level quality checks
 - **Performance Monitoring**: Processing metrics and statistics
@@ -110,7 +110,7 @@ This project implements a complete data management and analysis pipeline for hea
 - ROC curve analysis
 - Confusion matrix evaluation
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 ```bash
@@ -139,7 +139,7 @@ This will:
 - Extract data from CSV
 - Transform and clean the data
 - Load into SQLite database
-- Execute comprehensive SQL analysis
+- Execute complete SQL analysis
 - Generate detailed logs
 
 #### 2. Database Setup (Standalone)
@@ -162,24 +162,24 @@ python model_pipeline.py
 python data_cleaning.py
 ```
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 heart-disease-risk-predictor/
-├── 📊 Data Management Components
+├──  Data Management Components
 │   ├── database_setup.py      # SQLite database design & management
-│   ├── sql_analysis.py        # Comprehensive SQL analysis
+│   ├── sql_analysis.py        # Complete SQL analysis
 │   ├── etl_pipeline.py        # Complete ETL implementation
 │   └── data_cleaning.py       # Data preprocessing utilities
 ├── 🤖 Machine Learning Components
 │   ├── model_pipeline.py      # ML model training & evaluation
 │   └── model_training.ipynb   # Jupyter notebook for analysis
-├── 📈 Outputs & Results
+├──  Outputs & Results
 │   ├── confusion_matrix.png   # Model evaluation results
 │   ├── feature_importance.png # Feature analysis
 │   ├── roc_curve.png          # ROC curve analysis
 │   └── model.pkl              # Trained model
-├── 📋 Data & Documentation
+├──  Data & Documentation
 │   ├── heart_disease_data.csv # Source dataset
 │   ├── evaluation_report.md   # Model evaluation report
 │   ├── etl_pipeline.sql       # SQL scripts
@@ -189,7 +189,7 @@ heart-disease-risk-predictor/
     └── .gitignore             # Git ignore rules
 ```
 
-## 💾 Database Design
+##  Database Design
 
 ### Heart Disease Table Schema
 ```sql
@@ -221,12 +221,12 @@ CREATE TABLE heart_disease (
 - `idx_chol`: Cholesterol-based analysis
 - `idx_trestbps`: Blood pressure analysis
 
-## 📊 SQL Analysis Examples
+##  SQL Analysis Examples
 
 ### Age Group Risk Analysis
 ```sql
-SELECT 
-    CASE 
+SELECT
+    CASE
         WHEN age < 40 THEN 'Under 40'
         WHEN age BETWEEN 40 AND 50 THEN '40-50'
         WHEN age BETWEEN 51 AND 60 THEN '51-60'
@@ -235,15 +235,15 @@ SELECT
     COUNT(*) as total_patients,
     SUM(CASE WHEN num > 0 THEN 1 ELSE 0 END) as with_disease,
     ROUND(AVG(CASE WHEN num > 0 THEN 1.0 ELSE 0.0 END) * 100, 2) as disease_rate_percent
-FROM heart_disease 
-GROUP BY age_group 
+FROM heart_disease
+GROUP BY age_group
 ORDER BY MIN(age);
 ```
 
 ### Multi-Factor Risk Assessment
 ```sql
-SELECT 
-    CASE 
+SELECT
+    CASE
         WHEN age > 55 AND chol > 240 AND trestbps > 140 THEN '3 Risk Factors'
         WHEN (age > 55 AND chol > 240) OR (age > 55 AND trestbps > 140) OR (chol > 240 AND trestbps > 140) THEN '2 Risk Factors'
         WHEN age > 55 OR chol > 240 OR trestbps > 140 THEN '1 Risk Factor'
@@ -252,7 +252,7 @@ SELECT
     COUNT(*) as patient_count,
     SUM(CASE WHEN num > 0 THEN 1 ELSE 0 END) as with_disease,
     ROUND(AVG(CASE WHEN num > 0 THEN 1.0 ELSE 0.0 END) * 100, 2) as disease_rate_percent
-FROM heart_disease 
+FROM heart_disease
 GROUP BY risk_category
 ORDER BY disease_rate_percent DESC;
 ```
@@ -261,7 +261,7 @@ ORDER BY disease_rate_percent DESC;
 
 ### Model Performance
 - **Random Forest**: 84% accuracy
-- **Logistic Regression**: 86% accuracy  
+- **Logistic Regression**: 86% accuracy
 - **Gradient Boosting**: 88% accuracy
 
 ### Key Features (by importance)
@@ -271,17 +271,17 @@ ORDER BY disease_rate_percent DESC;
 4. `age` (Patient age)
 5. `ca` (Major vessels)
 
-## 📈 Data Management Achievements
+##  Data Management Achievements
 
-### Academic Requirements Fulfilled ✅
+### Academic Requirements Fulfilled
 - [x] **Database Design**: Proper SQLite schema with constraints
 - [x] **SQL Analysis**: 10+ complex analytical queries
 - [x] **ETL Pipeline**: Complete automated data processing
-- [x] **Data Quality**: Comprehensive validation and integrity checks
+- [x] **Data Quality**: Complete validation and integrity checks
 - [x] **Performance Optimization**: Strategic indexing for analytical workloads
 - [x] **Documentation**: Complete academic-level documentation
 - [x] **Logging & Monitoring**: Detailed operation tracking
-- [x] **Error Handling**: Robust exception management
+- [x] **Error Handling**: Reliable exception management
 - [x] **Scalability**: Modular design for extensibility
 
 ### Data Management Best Practices
@@ -289,10 +289,10 @@ ORDER BY disease_rate_percent DESC;
 - **Data Integrity**: Constraint-based validation
 - **Query Optimization**: Index-based performance tuning
 - **Separation of Concerns**: Modular architecture
-- **Comprehensive Logging**: Audit trail for all operations
+- **Complete Logging**: Audit trail for all operations
 - **Error Recovery**: Graceful handling of edge cases
 
-## 🔧 Technical Specifications
+##  Technical Specifications
 
 ### Dependencies
 - **pandas**: Data manipulation and analysis
@@ -321,13 +321,13 @@ This project demonstrates mastery of:
 - **Academic Documentation Standards**
 
 ### Grading Criteria Addressed
-- ✅ Database schema design and implementation
-- ✅ Complex SQL query development
-- ✅ ETL pipeline architecture
-- ✅ Data integrity and validation
-- ✅ Performance optimization
-- ✅ Comprehensive documentation
-- ✅ Code quality and organization
+-  Database schema design and implementation
+-  Complex SQL query development
+-  ETL pipeline architecture
+-  Data integrity and validation
+-  Performance optimization
+-  Complete documentation
+-  Code quality and organization
 
 ## 🤝 Contributing
 
@@ -337,7 +337,7 @@ This project demonstrates mastery of:
 4. Push to branch (`git push origin feature/enhancement`)
 5. Create Pull Request
 
-## 📄 License
+##  License
 
 This project is developed for academic purposes as part of the Data Management for Data Science course.
 
@@ -349,4 +349,4 @@ This project is developed for academic purposes as part of the Data Management f
 
 ---
 
-**Note**: This implementation represents a comprehensive data management system suitable for academic evaluation and real-world application. All components are designed to demonstrate best practices in database design, SQL analysis, ETL development, and data science workflows.
+**Note**: This implementation represents a complete data management system suitable for academic evaluation and real-world application. All components are designed to demonstrate best practices in database design, SQL analysis, ETL development, and data science workflows.
