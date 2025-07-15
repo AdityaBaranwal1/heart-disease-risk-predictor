@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Heart Disease Prediction Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .severity-card {
+            border-left: 5px solid {{ result.severity_prediction.risk_color }};
+        }
+        .risk-meter {
+            height: 20px;
+            background: linear-gradient(to right, #28a745, #ffc107, #fd7e14, #dc3545, #6f42c1);
+            border-radius: 10px;
+            position: relative;
+        }
+        .risk-indicator {
+            position: absolute;
+            top: -5px;
+            width: 30px;
+            height: 30px;
+            background: white;
+            border: 3px solid {{ result.severity_prediction.risk_color }};
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+        .severity-badge {
+            font-size: 1.2rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            color: white;
+            background-color: {{ result.severity_prediction.risk_color }};
+        }
+        .probability-bar {
+            height: 25px;
+            border-radius: 12px;
+            background: linear-gradient(45deg, var(--bar-color) 0%, var(--bar-color) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .probability-text {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem 0;">
+        <div class="container text-center">
+            <h1 class="display-4 mb-3">
+                <i class="fas fa-chart-line"></i> Enhanced Prediction Results
+            </h1>
+            <p class="lead">Comprehensive Heart Disease Risk Assessment with Severity Analysis</p>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <!-- Main Results Card -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card shadow-lg h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h4><i class="fas fa-heartbeat"></i> Binary Classification</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        {% if result.binary_prediction.has_heart_disease %}
+                            <div class="alert alert-danger">
+                                <h2><i class="fas fa-exclamation-triangle"></i> Heart Disease Detected</h2>
+                                <h3>Risk: {{ "%.1f"|format(result.binary_prediction.risk_percentage) }}%</h3>
+                            </div>
+                        {% else %}
+                            <div class="alert alert-success">
+                                <h2><i class="fas fa-check-circle"></i> No Heart Disease Detected</h2>
+                                <h3>Risk: {{ "%.1f"|format(result.binary_prediction.risk_percentage) }}%</h3>
+                            </div>
+                        {% endif %}
+                        <p class="mt-3">Confidence: {{ "%.1f"|format(result.binary_prediction.confidence * 100) }}%</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card shadow-lg severity-card h-100">
+                    <div class="card-header text-white" style="background-color: {{ result.severity_prediction.risk_color }};">
+                        <h4><i class="fas fa-layer-group"></i> Severity Classification</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <span class="severity-badge">
+                                Level {{ result.severity_prediction.severity_level }}: {{ result.severity_prediction.severity_description }}
+                            </span>
+                        </div>
+                        
+                        <!-- Risk Meter -->
+                        <div class="mb-4">
+                            <h6>Severity Level Indicator</h6>
+                            <div class="risk-meter">
+                                <div class="risk-indicator" style="left: {{ (result.severity_prediction.severity_level / 4 * 100)|round }}%;"></div>
+                            </div>
+                            <div class="d-flex justify-content-between mt-2 small">
+                                <span>0 (No Disease)</span>
+                                <span>1 (Mild)</span>
+                                <span>2 (Moderate)</span>
+                                <span>3 (Severe)</span>
+                                <span>4 (Very Severe)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Probability Analysis -->
+        <div class="card shadow-lg mb-4">
+            <div class="card-header bg-success text-white">
+                <h4><i class="fas fa-chart-bar"></i> Detailed Severity Probability Analysis</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    {% for severity, description in [
+                        ("0", "No Disease"),
+                        ("1", "Mild"), 
+                        ("2", "Moderate"),
+                        ("3", "Severe"),
+                        ("4", "Very Severe")
+                    ] %}
+                    <div class="col-md-12 mb-3">
+                        {% set prob = result.severity_prediction.severity_probabilities[severity] %}
+                        {% set prob_percent = (prob * 100)|round(1) %}
+                        {% set colors = ["#28a745", "#ffc107", "#fd7e14", "#dc3545", "#6f42c1"] %}
+                        <div class="d-flex align-items-center">
+                            <div class="me-3" style="min-width: 120px;">
+                                <strong>Level {{ severity }}: {{ description }}</strong>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="probability-bar" style="--bar-color: {{ colors[severity|int] }}; width: {{ prob_percent }}%;">
+                                    <div class="probability-text">{{ prob_percent }}%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Visual Chart -->
+        <div class="card shadow-lg mb-4">
+            <div class="card-header bg-info text-white">
+                <h4><i class="fas fa-chart-pie"></i> Severity Probability Distribution</h4>
+            </div>
+            <div class="card-body">
+                <canvas id="severityChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+
+        <!-- Patient Data Summary -->
+        <div class="card shadow-lg mb-4">
+            <div class="card-header bg-secondary text-white">
+                <h4><i class="fas fa-user-md"></i> Patient Data Summary</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Demographics & Vitals</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Age: {{ patient_data.age }} years</li>
+                            <li class="list-group-item">Sex: {{ "Male" if patient_data.sex == 1 else "Female" }}</li>
+                            <li class="list-group-item">Resting BP: {{ patient_data.trestbps }} mmHg</li>
+                            <li class="list-group-item">Cholesterol: {{ patient_data.chol }} mg/dl</li>
+                            <li class="list-group-item">Max Heart Rate: {{ patient_data.thalch }} bpm</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Clinical Indicators</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Chest Pain Type: {{ ["Typical Angina", "Atypical Angina", "Non-Anginal", "Asymptomatic"][patient_data.cp] }}</li>
+                            <li class="list-group-item">Fasting Blood Sugar >120: {{ "Yes" if patient_data.fbs == 1 else "No" }}</li>
+                            <li class="list-group-item">Exercise Induced Angina: {{ "Yes" if patient_data.exang == 1 else "No" }}</li>
+                            <li class="list-group-item">ST Depression: {{ patient_data.oldpeak }}</li>
+                            <li class="list-group-item">Major Vessels: {{ patient_data.ca }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="text-center">
+            <a href="/" class="btn btn-primary btn-lg me-3">
+                <i class="fas fa-plus"></i> New Prediction
+            </a>
+            <button onclick="window.print()" class="btn btn-secondary btn-lg">
+                <i class="fas fa-print"></i> Print Results
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Create severity probability chart
+        const ctx = document.getElementById('severityChart').getContext('2d');
+        const severityChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['No Disease (0)', 'Mild (1)', 'Moderate (2)', 'Severe (3)', 'Very Severe (4)'],
+                datasets: [{
+                    data: [
+                        {{ (result.severity_prediction.severity_probabilities["0"] * 100)|round(2) }},
+                        {{ (result.severity_prediction.severity_probabilities["1"] * 100)|round(2) }},
+                        {{ (result.severity_prediction.severity_probabilities["2"] * 100)|round(2) }},
+                        {{ (result.severity_prediction.severity_probabilities["3"] * 100)|round(2) }},
+                        {{ (result.severity_prediction.severity_probabilities["4"] * 100)|round(2) }}
+                    ],
+                    backgroundColor: ['#28a745', '#ffc107', '#fd7e14', '#dc3545', '#6f42c1'],
+                    borderWidth: 2,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.parsed + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

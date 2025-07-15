@@ -315,4 +315,4 @@ def generate_eda_report(csv_path):
     print("✓ EDA Report completed successfully!")
 
 if __name__ == "__main__":
-    generate_eda_report('heart_disease_uci.csv')
+    generate_eda_report('heart_disease_data.csv')

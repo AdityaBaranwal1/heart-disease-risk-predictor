@@ -1,26 +1,25 @@
 """
-Heart Disease Prediction Web Interface
-Simple web UI for the heart disease prediction system.
+Enhanced Web Interface for Heart Disease Severity Prediction
+Shows both binary classification and severity levels (0-4)
 """
 
-from flask import Flask, render_template, request, jsonify, flash, redirect, url_for
 import requests
-import json
+from flask import Flask, render_template, request, flash, redirect, url_for
 
 app = Flask(__name__)
-app.secret_key = 'heart_disease_predictor_secret_key'
+app.secret_key = 'heart_disease_severity_predictor_key'
 
-# Configuration
-API_URL = 'http://localhost:5000'
+# Enhanced API URL
+API_URL = 'http://127.0.0.1:5000'
 
 @app.route('/')
 def index():
-    """Main prediction interface."""
-    return render_template('index.html')
+    """Enhanced prediction interface."""
+    return render_template('enhanced_index.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    """Handle prediction request."""
+    """Handle enhanced prediction request with severity levels."""
     try:
         # Get form data
         patient_data = {
@@ -44,7 +43,7 @@ def predict():
         
         if response.status_code == 200:
             result = response.json()
-            return render_template('result.html', 
+            return render_template('enhanced_result.html', 
                                  patient_data=patient_data, 
                                  result=result)
         else:
@@ -60,9 +59,12 @@ def health():
     """Check API health."""
     try:
         response = requests.get(f'{API_URL}/health')
-        return jsonify(response.json())
+        return response.json()
     except:
-        return jsonify({'status': 'API unavailable'}), 503
+        return {'status': 'API unavailable'}, 503
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    print("🚀 Starting Enhanced Heart Disease Severity Predictor Web Interface...")
+    print("📊 Features: Binary + Severity Level Prediction")
+    print("🌐 Access at: http://127.0.0.1:5001")
+    app.run(host='127.0.0.1', port=5001, debug=True)

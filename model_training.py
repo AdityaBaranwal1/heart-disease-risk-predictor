@@ -342,7 +342,7 @@ def main():
     print("=" * 50)
     
     # Initialize predictor
-    predictor = HeartDiseasePredictor('heart_disease_uci.csv')
+    predictor = HeartDiseasePredictor('heart_disease_data.csv')
     
     # Execute full pipeline
     (predictor

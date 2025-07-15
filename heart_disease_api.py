@@ -26,7 +26,7 @@ class HeartDiseasePredictorAPI:
             # Feature names (must match training data)
             self.feature_names = [
                 'age', 'sex', 'cp', 'trestbps', 'chol', 'fbs',
-                'restecg', 'thalach', 'oldpeak', 'slope', 'ca', 'thal'
+                'restecg', 'thalch', 'exang', 'oldpeak', 'slope', 'ca', 'thal'
             ]
             
             self.logger.info("Heart Disease Predictor API initialized successfully")
