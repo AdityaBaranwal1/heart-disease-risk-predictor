@@ -37,7 +37,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="age" class="form-label">Age (years)</label>
-                                        <input type="number" class="form-control" id="age" name="age" min="1" max="120" required>
+                                        <input type="number" class="form-control" id="age" name="age" min="1" max="120" value="67" required>
                                     </div>
 
                                     <div class="mb-3">
@@ -45,7 +45,7 @@
                                         <select class="form-control" id="sex" name="sex" required>
                                             <option value="">Select Gender</option>
                                             <option value="0">Female</option>
-                                            <option value="1">Male</option>
+                                            <option value="1" selected>Male</option>
                                         </select>
                                     </div>
 
@@ -56,25 +56,25 @@
                                             <option value="0">Typical Angina</option>
                                             <option value="1">Atypical Angina</option>
                                             <option value="2">Non-Anginal Pain</option>
-                                            <option value="3">Asymptomatic</option>
+                                            <option value="3" selected>Asymptomatic</option>
                                         </select>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="trestbps" class="form-label">Resting Blood Pressure</label>
-                                        <input type="number" class="form-control" id="trestbps" name="trestbps" min="50" max="300" required>
+                                        <input type="number" class="form-control" id="trestbps" name="trestbps" min="50" max="300" value="160" required>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="chol" class="form-label">Cholesterol (mg/dl)</label>
-                                        <input type="number" class="form-control" id="chol" name="chol" min="0" max="600" required>
+                                        <input type="number" class="form-control" id="chol" name="chol" min="0" max="600" value="286" required>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="fbs" class="form-label">Fasting Blood Sugar > 120 mg/dl</label>
                                         <select class="form-control" id="fbs" name="fbs" required>
                                             <option value="">Select</option>
-                                            <option value="0">No</option>
+                                            <option value="0" selected>No</option>
                                             <option value="1">Yes</option>
                                         </select>
                                     </div>
@@ -87,13 +87,13 @@
                                             <option value="">Select Result</option>
                                             <option value="0">Normal</option>
                                             <option value="1">ST-T wave abnormality</option>
-                                            <option value="2">Left ventricular hypertrophy</option>
+                                            <option value="2" selected>Left ventricular hypertrophy</option>
                                         </select>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="thalch" class="form-label">Maximum Heart Rate Achieved</label>
-                                        <input type="number" class="form-control" id="thalch" name="thalch" min="50" max="250" required>
+                                        <input type="number" class="form-control" id="thalch" name="thalch" min="50" max="250" value="108" required>
                                     </div>
 
                                     <div class="mb-3">
@@ -101,13 +101,13 @@
                                         <select class="form-control" id="exang" name="exang" required>
                                             <option value="">Select</option>
                                             <option value="0">No</option>
-                                            <option value="1">Yes</option>
+                                            <option value="1" selected>Yes</option>
                                         </select>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="oldpeak" class="form-label">ST Depression (oldpeak)</label>
-                                        <input type="number" step="0.1" class="form-control" id="oldpeak" name="oldpeak" min="0" max="10" required>
+                                        <input type="number" step="0.1" class="form-control" id="oldpeak" name="oldpeak" min="0" max="10" value="1.5" required>
                                     </div>
 
                                     <div class="mb-3">
@@ -115,7 +115,7 @@
                                         <select class="form-control" id="slope" name="slope" required>
                                             <option value="">Select Slope</option>
                                             <option value="0">Upsloping</option>
-                                            <option value="1">Flat</option>
+                                            <option value="1" selected>Flat</option>
                                             <option value="2">Downsloping</option>
                                         </select>
                                     </div>
@@ -127,7 +127,7 @@
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
-                                            <option value="3">3</option>
+                                            <option value="3" selected>3</option>
                                             <option value="4">4</option>
                                         </select>
                                     </div>
@@ -136,7 +136,7 @@
                                         <label for="thal" class="form-label">Thalassemia</label>
                                         <select class="form-control" id="thal" name="thal" required>
                                             <option value="">Select Type</option>
-                                            <option value="0">Normal</option>
+                                            <option value="0" selected>Normal</option>
                                             <option value="1">Fixed defect</option>
                                             <option value="2">Reversible defect</option>
                                             <option value="3">Not described</option>

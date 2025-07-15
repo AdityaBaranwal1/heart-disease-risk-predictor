@@ -22,9 +22,10 @@ class CS210ProjectLauncher:
         print("=" * 80)
         print(" CS210 FINAL PROJECT - HEART DISEASE PREDICTION SYSTEM")
         print("=" * 80)
-        print("Author: AP")
+        print("Authors: Aditya Baranwal, Kayla Nadolny, Anupam Pradeep")
         print("Course: CS210 - Data Management for Data Science")
         print("Date: July 2025")
+        print("GitHub: https://github.com/AdityaBaranwal1/heart-disease-risk-predictor")
         print("Features: Multi-Model ML Pipeline + Interactive Web Apps")
         print("=" * 80)
 
@@ -186,7 +187,7 @@ class CS210ProjectLauncher:
         print("   • Multi-model comparison (Logistic, RF, GB)")
         print("   • 85.9% accuracy with Gradient Boosting")
         print("   • Key feature identification (cholesterol, max HR)")
-        print("   • Deployment-ready deployment")
+        print("   • Deployment: python cs210_launcher.py")
         print("   • Interactive web applications")
 
         print("\n" + "=" * 80)

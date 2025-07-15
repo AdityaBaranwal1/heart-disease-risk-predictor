@@ -1,8 +1,9 @@
 """
 CS210 Final Project - Heart Disease Prediction Streamlit App
 Interactive web application for real-time heart disease risk assessment
-Author: AP
+Authors: Aditya Baranwal, Kayla Nadolny, Anupam Pradeep
 Date: July 2025
+GitHub: https://github.com/AdityaBaranwal1/heart-disease-risk-predictor
 """
 
 import streamlit as st
@@ -101,33 +102,33 @@ if page == "🏠 Risk Assessment":
 
         with col1:
             st.subheader("Demographics")
-            age = st.number_input("Age (years)", min_value=0, max_value=120, value=50)
-            sex = st.selectbox("Gender", [0, 1], format_func=lambda x: "Female" if x == 0 else "Male")
+            age = st.number_input("Age (years)", min_value=0, max_value=120, value=67)
+            sex = st.selectbox("Gender", [0, 1], format_func=lambda x: "Female" if x == 0 else "Male", index=1)
 
             st.subheader("Vital Signs")
-            trestbps = st.number_input("Resting Blood Pressure (mmHg)", min_value=50, max_value=300, value=120)
-            chol = st.number_input("Cholesterol (mg/dl)  KEY FEATURE", min_value=0, max_value=600, value=200)
+            trestbps = st.number_input("Resting Blood Pressure (mmHg)", min_value=50, max_value=300, value=160)
+            chol = st.number_input("Cholesterol (mg/dl)  KEY FEATURE", min_value=0, max_value=600, value=286)
 
         with col2:
             st.subheader("Symptoms & Tests")
             cp = st.selectbox("Chest Pain Type", [0, 1, 2, 3],
-                            format_func=lambda x: ["Asymptomatic", "Atypical Angina", "Non-Anginal Pain", "Typical Angina"][x])
+                            format_func=lambda x: ["Asymptomatic", "Atypical Angina", "Non-Anginal Pain", "Typical Angina"][x], index=0)
             fbs = st.selectbox("Fasting Blood Sugar > 120 mg/dl", [0, 1],
-                             format_func=lambda x: "False" if x == 0 else "True")
+                             format_func=lambda x: "False" if x == 0 else "True", index=0)
             restecg = st.selectbox("Resting ECG", [0, 1, 2],
-                                 format_func=lambda x: ["Normal", "ST-T Abnormality", "LV Hypertrophy"][x])
+                                 format_func=lambda x: ["Normal", "ST-T Abnormality", "LV Hypertrophy"][x], index=2)
             exang = st.selectbox("Exercise Induced Angina", [0, 1],
-                               format_func=lambda x: "No" if x == 0 else "Yes")
+                               format_func=lambda x: "No" if x == 0 else "Yes", index=1)
 
         with col3:
             st.subheader("Exercise Test Results")
-            thalch = st.number_input("Max Heart Rate  KEY FEATURE", min_value=50, max_value=250, value=150)
-            oldpeak = st.number_input("ST Depression", min_value=0.0, max_value=10.0, value=1.0, step=0.1)
+            thalch = st.number_input("Max Heart Rate  KEY FEATURE", min_value=50, max_value=250, value=108)
+            oldpeak = st.number_input("ST Depression", min_value=0.0, max_value=10.0, value=1.5, step=0.1)
             slope = st.selectbox("ST Slope", [0, 1, 2],
-                                format_func=lambda x: ["Upsloping", "Flat", "Downsloping"][x])
-            ca = st.number_input("Major Vessels (0-4)", min_value=0, max_value=4, value=0)
+                                format_func=lambda x: ["Upsloping", "Flat", "Downsloping"][x], index=1)
+            ca = st.number_input("Major Vessels (0-4)", min_value=0, max_value=4, value=3)
             thal = st.selectbox("Thalassemia", [0, 1, 2, 3],
-                              format_func=lambda x: ["Normal", "Fixed Defect", "Reversible Defect", "Unknown"][x])
+                              format_func=lambda x: ["Normal", "Fixed Defect", "Reversible Defect", "Unknown"][x], index=0)
 
         submitted = st.form_submit_button(" Assess Risk", use_container_width=True)
 
@@ -307,10 +308,10 @@ elif page == " About CS210 Project":
 
             with col1:
                 st.subheader(" Project Overview")
-                st.write("**Author:** AP")
+                st.write("**Authors:** Aditya Baranwal, Kayla Nadolny, Anupam Pradeep")
                 st.write("**Course:** CS210 - Data Management for Data Science")
                 st.write("**Date:** July 2025")
-                st.write("**GitHub:** [Repository Link]")
+                st.write("**GitHub:** https://github.com/AdityaBaranwal1/heart-disease-risk-predictor")
 
                 st.subheader(" Project Goals")
                 st.write("- Predict heart disease risk using machine learning")
@@ -336,7 +337,7 @@ elif page == " About CS210 Project":
                 st.subheader(" Deployment Strategy")
                 deployment = project_info['streamlit_app']['deployment']
 
-                st.write(f"**Local:** `{deployment['local']}`")
+                st.write(f"**Local:** `python cs210_launcher.py`")
                 st.write(f"**Future:** {deployment['future']}")
                 st.write(f"**Goal:** {deployment['goal']}")
 
@@ -354,4 +355,5 @@ elif page == " About CS210 Project":
 # Footer
 st.markdown("---")
 st.markdown("**CS210 Final Project** | Heart Disease Prediction with Machine Learning | July 2025")
+st.markdown("**Authors:** Aditya Baranwal, Kayla Nadolny, Anupam Pradeep")
 st.markdown("*This application demonstrates machine learning techniques for healthcare applications*")

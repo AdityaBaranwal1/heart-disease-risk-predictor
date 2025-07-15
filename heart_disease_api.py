@@ -40,7 +40,7 @@ class HeartDiseasePredictorAPI:
             # Feature names (must match training data)
             self.feature_names = [
                 'age', 'sex', 'cp', 'trestbps', 'chol', 'fbs',
-                'restecg', 'thalch', 'exang', 'oldpeak', 'slope', 'ca', 'thal'
+                'restecg', 'thalach', 'exang', 'oldpeak', 'slope', 'ca', 'thal'
             ]
 
             # Model performance metrics (from CS210 evaluation)
@@ -100,7 +100,7 @@ class HeartDiseasePredictorAPI:
             'chol': (0, 600),  # Cholesterol - key feature identified in CS210
             'fbs': (0, 1),
             'restecg': (0, 2),
-            'thalch': (50, 250),  # Max heart rate - key feature identified in CS210
+            'thalach': (50, 250),  # Max heart rate - key feature identified in CS210
             'exang': (0, 1),
             'oldpeak': (0, 10),
             'slope': (0, 2),
@@ -162,7 +162,7 @@ class HeartDiseasePredictorAPI:
             risk_factors = []
             if patient_data.get('chol', 0) > 240:
                 risk_factors.append('High cholesterol (key risk factor)')
-            if patient_data.get('thalch', 0) < 120:
+            if patient_data.get('thalach', 0) < 120:
                 risk_factors.append('Low maximum heart rate (key risk factor)')
             if patient_data.get('age', 0) > 60:
                 risk_factors.append('Advanced age')
@@ -282,7 +282,7 @@ def get_feature_importance():
     # Based on CS210 Random Forest analysis
     feature_importance = {
         'cholesterol': 0.15,  # Key finding from CS210
-        'thalch': 0.14,      # Maximum heart rate - key finding
+        'thalach': 0.14,      # Maximum heart rate - key finding
         'age': 0.12,
         'oldpeak': 0.11,
         'ca': 0.10,
@@ -298,10 +298,10 @@ def get_feature_importance():
 
     return jsonify({
         'feature_importance': feature_importance,
-        'top_3_features': ['cholesterol', 'thalch', 'age'],
+        'top_3_features': ['cholesterol', 'thalach', 'age'],
         'cs210_findings': {
             'cholesterol': 'Major predictor - values >240 mg/dl significantly increase risk',
-            'thalch': 'Maximum heart rate - lower values (<120) indicate higher risk',
+            'thalach': 'Maximum heart rate - lower values (<120) indicate higher risk',
             'age': 'Age factor - risk increases significantly after 60'
         }
     })
@@ -317,7 +317,7 @@ def get_example():
         'chol': 233,  # Normal cholesterol (CS210 key feature)
         'fbs': 1,
         'restecg': 0,
-        'thalch': 150,  # Good max heart rate (CS210 key feature)
+        'thalach': 150,  # Good max heart rate (CS210 key feature)
         'exang': 0,
         'oldpeak': 2.3,
         'slope': 0,
@@ -335,7 +335,7 @@ def get_example():
             'chol': 'Serum cholesterol (0-600 mg/dl) - KEY PREDICTOR: >240 high risk',
             'fbs': 'Fasting blood sugar > 120 mg/dl (0=false, 1=true)',
             'restecg': 'Resting ECG results (0-2)',
-            'thalch': 'Maximum heart rate (50-250) - KEY PREDICTOR: <120 high risk',
+            'thalach': 'Maximum heart rate (50-250) - KEY PREDICTOR: <120 high risk',
             'exang': 'Exercise induced angina (0=no, 1=yes)',
             'oldpeak': 'ST depression induced by exercise (0-10)',
             'slope': 'Slope of peak exercise ST segment (0-2)',
@@ -363,7 +363,7 @@ def get_streamlit_info():
                 'Risk assessment recommendations'
             ],
             'deployment': {
-                'local': 'streamlit run app.py',
+                'local': 'python cs210_launcher.py',
                 'future': 'Streamlit Cloud for public access',
                 'goal': 'Make heart disease screening accessible to thousands'
             }
