@@ -3,7 +3,7 @@
 
 **Generated:** July 14, 2025
 **Project:** DATA MGMT FOR DATASC 01:198:210:G1
-**Author:** Improved Implementation Team
+**Author:** Aditya Baranwal
 **Repository:** [heart-disease-risk-predictor](https://github.com/AdityaBaranwal1/heart-disease-risk-predictor)
 
 ---
