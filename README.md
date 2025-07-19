@@ -5,7 +5,7 @@ A complete data science project that demonstrates advanced data management techn
 
 ##  Project Overview
 
-This project implements a complete data management and analysis pipeline for heart disease prediction, specifically designed for **DATA MGMT FOR DATASC 01:198:210:G1** course requirements.
+This project implements a complete data management and analysis pipeline for heart disease prediction, specifically designed for course requirements.
 
 ### Key Features
 - **Database Design**: SQLite schema with proper constraints and indexing
